@@ -1,0 +1,28 @@
+automation:
+  - id: '1609961276082'
+    alias: Divera Alarm
+    description: ''
+    trigger:  #The automation is triggered, when the divera alarm id changes
+    - platform: state
+      entity_id: sensor.divera_id
+    condition:  #Checks if the divera-id have a plausible value and the id is above 99
+    - condition: template
+      value_template: '{{ is_state_attr(''sensor.divera_id'', ''success'', true)}}'
+    - condition: numeric_state
+      entity_id: sensor.divera_id
+      above: '99'
+    - condition: template
+      value_template: '{{ trigger.from_state.state != "unavailable" }}'
+    action:
+    - service: homeassistant.update_entity  #Update the second rest sensor to get details about the alarm.
+      entity_id: sensor.divera_alarm
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: sensor.divera_alarm
+        state: ABSPANN  #The automation is abordet, when the state(title) is ABSPANN
+    - service: light.turn_on  #Edit your automation here. For Example flash a light called bedroom
+      data:
+        flash: short
+      target:
+        entity_id: light.bedroom
