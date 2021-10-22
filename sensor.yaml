@@ -1,0 +1,36 @@
+sensor:
+
+  - platform: rest
+    name: divera_id
+    scan_interval: 60
+    value_template: > 
+      {{ value_json['data']['sorting'][0] | default(0) }}
+    verify_ssl: true
+    json_attributes:
+      - success
+    resource: https://www.divera247.com/api/v2/alarms?accesskey=<ACCESSSKEY>
+      
+      
+
+  - platform: rest
+    name: divera_alarm
+    scan_interval: 604800
+    value_template: > 
+      {{ value_json['data']['title'] | default(0) }}
+    verify_ssl: true
+    json_attributes_path: "$.['data']"
+    force_update: true
+    json_attributes:
+      - text
+      - address
+      - new
+      - lat
+      - lng
+      - closed
+      - duration
+  resource_template: >
+    {% if states('sensor.divera_id')| float (default=0) > 20 %}
+      https://www.divera247.com/api/v2/alarms/{{states('sensor.divera_id')}}?accesskey=<ACCESSSKEY>
+     {% else %}
+       https://www.divera247.com/api/v2/alarms?accesskey=<ACCESSSKEY>
+    {% endif %}
