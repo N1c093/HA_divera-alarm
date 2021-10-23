@@ -20,7 +20,7 @@ automation:
       conditions:
       - condition: state
         entity_id: sensor.divera_alarm
-        state: ABSPANN  #The automation is abordet, when the state(title) is ABSPANN
+        state: ABSPANN  #The automation is abordet, when the state(title) is "ABSPANN". We use this alarm type "ABSPANN", when there was a false alarm and the alarm get cancelled in divera. You can edit this for your needs or just remove this condition.
     - service: light.turn_on  #Edit your automation here. For Example flash a light called bedroom
       data:
         flash: short
