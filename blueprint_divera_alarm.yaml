@@ -5,7 +5,7 @@ blueprint:
   input:
     abort_keyword:
       name: Abort keyword
-      description: Keyword/Title in Diera when the action should not be triggered, for example 'ABSPANN', 'Probealarm'
+      description: Keyword/Title in Diera when the action should not be triggered, for example ABSPANN, Probealarm
       selector:
         text:
     target_action:
