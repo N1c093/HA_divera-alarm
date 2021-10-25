@@ -1,0 +1,38 @@
+blueprint:
+  name: Divera Alarm
+  description: Trigger some actions when a new divera alarm is triggered.
+  domain: automation
+  input:
+    abort_keyword:
+      name: Abort keyword
+      description: Keyword/Title in Diera when the action should not be triggered, for example 'ABSPANN', 'Probealarm'
+      selector:
+        text:
+    target_action:
+      name: Action
+      description: What should be done, when a new divera alarm is trigged?
+      selector:
+        action: {}
+mode: parallel
+max: 10
+trigger:
+  platform: state
+  entity_id: sensor.divera_id
+condition:
+- condition: template
+  value_template: '{{ is_state_attr(''sensor.divera_id'', ''success'', true)}}'
+- condition: numeric_state
+  entity_id: sensor.divera_id
+  above: '99'
+- condition: template
+  value_template: '{{ trigger.from_state.state != "unavailable" }}'
+action:
+- service: homeassistant.update_entity
+  entity_id: sensor.divera_alarm
+- condition: not
+  conditions:
+  - condition: state
+    entity_id: sensor.divera_alarm
+    state: !input 'abort_keyword'
+- choose:
+  default: !input 'target_action'
