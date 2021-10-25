@@ -30,6 +30,8 @@ This sensor is updated automatically only once a week , because we trigger the u
 
 Click this link or add the blueprint manually:
 
+<a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2FN1c093%2FHA_divera-alarm%2Fblob%2Fmain%2Fblueprint_divera_alarm.yaml" target="_blank"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." /></a>
+
 
 
 Go to **Configuration** and then **Blueprints**. Click on the blue “Import Blueprint" button in the bottom right.
