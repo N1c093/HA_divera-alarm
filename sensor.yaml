@@ -28,9 +28,9 @@ sensor:
       - lng
       - closed
       - duration
-  resource_template: >
-    {% if states('sensor.divera_id')| float (default=0) > 20 %}
-      https://www.divera247.com/api/v2/alarms/{{states('sensor.divera_id')}}?accesskey=<ACCESSSKEY>
-     {% else %}
-       https://www.divera247.com/api/v2/alarms?accesskey=<ACCESSSKEY>
-    {% endif %}
+    resource_template: >
+      {% if states('sensor.divera_id')| float (default=0) > 20 %}
+        https://www.divera247.com/api/v2/alarms/{{states('sensor.divera_id')}}?accesskey=<ACCESSSKEY>
+      {% else %}
+        https://www.divera247.com/api/v2/alarms?accesskey=<ACCESSSKEY>
+      {% endif %}
