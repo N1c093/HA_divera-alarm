@@ -17,22 +17,42 @@ Replace the `<ACCESSSKEY>` three times (line 9, 34, 36) with your user-accesskey
 
 **Explanation:**
 
-The first sensor just check if a new alarm-id is available. This sensor is updated every 60 seconds. If you need to check more often, you can set the value down to 30 seconds.
-The state of this sensor is mostly empty and only shows the alarm-id when there is an active alarm.
+***sensor.divera_id***
 
-The second sensor get the details from the new alarm. Because we need to know the current alarm-id, to get the details for the  alarm, we use the `sensor.divera_id` (from the first sensor) inside the second rest call.
-This sensor is updated automatically only once a week , because we trigger the update via the automation. 
+The first sensor just checks, if a new alarm-id is available. This sensor is updated every 60 seconds. If you need to check more often, you can set the value down to 30 seconds.
+The state of this sensor is mostly empty and only shows the alarm-id when there is an alarm which isn't archived.
+
+***sensor.divera_alarm***
+
+The second sensor get the details for the new alarm. To get the details for the  alarm, we need to know the current alarm-id, so we use the state from `sensor.divera_id` (from the first sensor) inside the second rest call.
+This sensor is only updated automatically once a week, because we trigger the update of this sensor via the blueprint/automation. 
+
+This sensor `sensor.divera_alarm` show the following values:
+
+![image](https://user-images.githubusercontent.com/59510296/139063301-47bedc11-0178-43fe-91b2-35b82d8d7cec.png)
+
+```
+State: Shows the title of the alarm
+Attributes:  
+  text: return the text of the alarm. Inside the app this attribute is called "Nachricht"
+  address: address of the alarm location
+  new: Was the alarm already read inside divera app?
+  lat: GPS latitude of the alarm location
+  lng: GPS longitude of the alarm location
+  closed: is the alarm already closed?
+  duration: show the duration, after the alarm is closed
+```
 
 ## 3. Create an automation
 
 ### Preffered/easy way: Use my prebuild blueprint
 
 
-Click this link or add the blueprint manually:
+Click this link:
 
 <a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2FN1c093%2FHA_divera-alarm%2Fblob%2Fmain%2Fblueprint_divera_alarm.yaml" target="_blank"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." /></a>
 
-
+Or add the blueprint manually:
 
 Go to **Configuration** and then **Blueprints**. Click on the blue “Import Blueprint" button in the bottom right.
 Add the following URL: https://github.com/N1c093/HA_divera-alarm/blob/main/blueprint_divera_alarm.yaml
