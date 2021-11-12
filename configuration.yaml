@@ -1,0 +1,11 @@
+template:
+  - sensor:
+    - name: "Divera Alarm Location"
+      state: "{{state_attr('sensor.divera_alarm', 'address')}}"
+      icon: mdi:map-marker-alert
+      attributes:
+        latitude: "{{state_attr('sensor.divera_alarm', 'lat')}}"
+        longitude: "{{state_attr('sensor.divera_alarm', 'lng')}}"
+    - name: "Divera Alarm Text"
+      state: "{{state_attr('sensor.divera_alarm', 'text')|regex_replace(find='<br />', replace='', ignorecase=False)}}"
+      icon: mdi:alarm-light
