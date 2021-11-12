@@ -61,6 +61,15 @@ Add the following URL: https://github.com/N1c093/HA_divera-alarm/blob/main/bluep
 
 See [automation.yaml](automation.yaml)
 
+## Additional template sensor
+
+If you want to display the alarm text or the alarm location in the lovelace view, you can create some template sensor.
+I created two template sensor. One sensor for the alarm location and one for the alarm text.
+
+The sensor `sensor.divera_alarm_location` can be used inside the lovelace map, so you can see the alarm location on the map.
+
+See [configuration.yaml](configuration.yaml)
+
 
 ## Have fun with your Divera alarms inside Home Assistant
 If there is anything unclear with my explanation or you find a problem, just open a new discussion or an issue.
