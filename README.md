@@ -1,3 +1,7 @@
+# ARCHIVED
+As [@fwmarcel](http://github.com/fwmarcel) created a custom integration for Home Assistant I'm going to archive my workaround. It's much easier to use his custom integration over here: https://github.com/fwmarcel/home-assistant-divera
+
+
 # Home Assistant Divera Alarm
 
 I currently noticed that there isn't any documented way on how to get the [Divera](https://www.divera247.com/) alarms into Home Assistant. Sadly I'm not able to create my own integration for it, but I show you my workaround to get the alarms into Home Assistant
